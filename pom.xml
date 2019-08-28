@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.alipay.sofa</groupId>
+        <artifactId>sofaboot-dependencies</artifactId>
+        <version>3.1.3</version>
+    </parent>
+
+    <groupId>com.sofaboot.sofa</groupId>
+    <artifactId>sofaboot-start</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+    <properties>
+        <!-- sbs short for sofa boot start-->
+        <sbs.project.version>1.0.0-SNAPSHOT</sbs.project.version>
+        <jdk.verson>1.8</jdk.verson>
+        <maven.compiler.source>${jdk.verson}</maven.compiler.source>
+        <maven.compiler.target>${jdk.verson}</maven.compiler.target>
+        <google.guava.version>17.0</google.guava.version>
+        <codehaus.jackson.version>1.9.13</codehaus.jackson.version>
+        <mockito.version>1.10.19</mockito.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <jjwt.version>0.9.1</jjwt.version>
+    </properties>
+
+    <modules>
+        <module>service-impl</module>
+        <module>facade</module>
+        <module>dal</module>
+        <module>util</module>
+        <module>web</module>
+        <module>shared</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.sofaboot.sofa</groupId>
+                <artifactId>sofaboot-start-biz-shared</artifactId>
+                <version>${sbs.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofaboot.sofa</groupId>
+                <artifactId>sofaboot-start-common-service-facade</artifactId>
+                <version>${sbs.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofaboot.sofa</groupId>
+                <artifactId>sofaboot-start-biz-service-impl</artifactId>
+                <version>${sbs.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofaboot.sofa</groupId>
+                <artifactId>sofaboot-start-common-dal</artifactId>
+                <version>${sbs.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofaboot.sofa</groupId>
+                <artifactId>sofaboot-start-common-util</artifactId>
+                <version>${sbs.project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sofaboot.sofa</groupId>
+                <artifactId>sofaboot-start-web</artifactId>
+                <version>${sbs.project.version}</version>
+            </dependency>
+
+
+            <!-- spring framework and spring boot -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+            </dependency>
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.ws.rs</groupId>
+                <artifactId>javax.ws.rs-api</artifactId>
+                <version>2.0</version>
+            </dependency>
+
+            <!-- guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google.guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-jaxrs</artifactId>
+                <version>${codehaus.jackson.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.9.8</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>2.0.1.Final</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <id>nexus-snapshots</id>
+                    <url>http://127.0.0.1:8081/repository/maven-snapshots/</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <id>nexus-snapshots</id>
+                    <url>http://127.0.0.1:8081/repository/maven-snapshots/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>snapshots</name>
+            <url>http://127.0.0.1:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>

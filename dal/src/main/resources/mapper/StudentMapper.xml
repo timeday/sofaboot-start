@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sofaboot.sofa.common.dal.mapper.StudentMapper">
+
+    <insert id="save" parameterType="com.sofaboot.sofa.common.dal.tables.Student">
+        insert  into test_student(`name`,`age`) value (#{name},#{age});
+    </insert>
+
+    <select id="selectAll" resultType="com.sofaboot.sofa.common.dal.tables.Student">
+         SELECT
+            *
+        FROM
+            test_student;
+    </select>
+
+</mapper>

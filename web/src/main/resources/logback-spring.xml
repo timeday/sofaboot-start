@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="120 seconds" >
+
+	<!-- 属性文件:在properties文件中找到对应的配置项 -->
+	<springProperty scope="context" name="logging.path"  source="logging.path"/>
+	<springProperty scope="context" name="logging.level" source="logging.level.com.sofaboot.sofa"/>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="utf-8">
+			<pattern>%d | %-5level | %thread | %logger{0} | %msg%n</pattern>
+			<outputPatternAsHeader>false</outputPatternAsHeader>
+		</encoder>
+	</appender>
+
+	<logger name="com.able.ft" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="com.sofaboot.sofa.SOFABootWebApplication" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="org.springframework.boot.autoconfigure" level="ERROR" />
+	<logger name="org.springframework.beans" level="ERROR" />
+	<logger name="org.springframework.context" level="ERROR" />
+	<logger name="org.apache.activemq.transport" level="WARN" />
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
